@@ -1,5 +1,8 @@
-#uuid {
+* {
     font-family: monospace;
+}
+
+#uuid {
     font-size: 1.5em;
     float: left;
     margin-right: 30px;

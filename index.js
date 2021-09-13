@@ -13,39 +13,26 @@ function generateNumber(length) {
 
 
 let onClick = function() {
-    document.getElementById('uuid').textContent = generateNumber(10);
+    document.getElementById('numbers').textContent = generateNumber(10);
 }
 onClick();
 
-//Sort Element
 
-let elementSort = document.getElementById('uuid').textContent;
-let arr = elementSort.split('');
+// Sort Element
+function sortElement() {
+    document.getElementById('result').innerHTML = '';
+    let el = document.getElementById('numbers').textContent;
+    let a = el.split('');
+    bubble(a);
+}
+sortElement();
 
-let bubble = (arr) => {
-    let len = arr.length;
-    for (let i = 0; i < len; i++) {
-        for (let j = 0; j < len; j++) {
-            if (arr[j] > arr[j + 1]) {
-                let tmp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = tmp;
-            }
-        }
-        showElement(arr);
-    }
-    return arr;
-};
-bubble(arr);
+function showElement(arr) {
 
-
-function showElement() {
     let element = arr;
-    for (let i = 0; i < element.length; i++) {
-        let div = document.createElement('div');
-        let row = element;
-        div.appendChild(document.createTextNode(row));
-        document.body.appendChild(div);
-    }
+    let div = document.getElementById('result')
+    let p = document.createElement('p')
+    p.append(element);
+    div.appendChild(p);
     return element;
 }
