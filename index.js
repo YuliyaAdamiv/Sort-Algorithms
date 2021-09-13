@@ -1,16 +1,18 @@
 //Function Generate Numbers
 
 function generateNumber(length) {
-    let result = '';
-    let characters = '0123456789';
-    let charactersLength = characters.length;
+    let result = [];
     for (let i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() *
-            charactersLength));
-    }
-    return result;
+        let readyElementForArray = addToSimpleNumberZero((getRandomNumber(0, 50)), 2);
+        result.push(readyElementForArray)
+    };
+    let readyElement = result.join(' ');
+    return readyElement;
 }
 
+const getRandomNumber = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
 let onClick = function() {
     document.getElementById('numbers').textContent = generateNumber(10);
@@ -21,9 +23,12 @@ onClick();
 // Sort Element
 function sortElement() {
     document.getElementById('result').innerHTML = '';
-    let el = document.getElementById('numbers').textContent;
-    let a = el.split('');
-    bubble(a);
+    let elementArray = document.getElementById('numbers').textContent;
+    let array = [];
+    array.push(elementArray);
+    let arraySplit = elementArray.split(' ');
+    bubble(arraySplit);
+
 }
 sortElement();
 
@@ -35,4 +40,12 @@ function showElement(arr) {
     p.append(element);
     div.appendChild(p);
     return element;
+}
+
+function addToSimpleNumberZero(number, length) {
+    var str = '' + number;
+    while (str.length < length) {
+        str = '0' + str;
+    }
+    return str;
 }
