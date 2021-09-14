@@ -13,6 +13,7 @@ const bubble = (arr) => {
         for (j = 0; j < end; j++) {
             if (arr[j] > arr[j + 1]) {
                 swap(arr, j, j + 1);
+                console.log();
             }
         }
         showElement(arr);
