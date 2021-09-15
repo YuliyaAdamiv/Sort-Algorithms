@@ -1,0 +1,21 @@
+.color {
+    color: red;
+}
+
+.input {
+    width: 70%;
+}
+
+.left {
+    float: left;
+    width: 30%;
+}
+
+.right {
+    float: right;
+    width: 70%;
+}
+
+#count {
+    color: blue;
+}

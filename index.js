@@ -15,10 +15,49 @@ const getRandomNumber = (min, max) => {
 };
 
 let onClick = function() {
-    document.getElementById('numbers').textContent = generateNumber(10);
+    let input = document.getElementById('input').value;
+    let string;
+    if (input === typeof string) {
+        generateNumber(10)
+    }
+    document.getElementById('numbers').textContent = generateNumber(input);
 }
 onClick();
 
+//Apply
+function getValueInput() {
+    let input = document.getElementById('input').value;
+    console.log(input);
+    let string;
+    if (input === typeof string) {
+        generateNumber(10)
+    }
+}
+
+function validate() {
+    var regex = /[ad3-9]/gi;
+    var txt = document.getElementById('input').value;
+    var valid = true;
+    var error = '';
+    if (txt.replace(/ /g, '').length == 0) {
+        return;
+    }
+    if (regex.test(txt)) {
+        if (!isNaN(txt)) {
+            if (!(parseInt(txt) >= 0 && parseInt(txt) <= 30)) {
+                valid = false;
+                error = 'Please enter between 3 to 30.'
+            }
+        }
+    } else {
+        valid = false;
+        error = 'Please enter between 3 to 30, A or D'
+    }
+
+    if (!valid) {
+        alert(error);
+    }
+}
 
 // Sort Element
 function sortElement() {
@@ -34,7 +73,6 @@ sortElement();
 
 
 function showElement(arr) {
-    // findChanges(arr);
     let element = arr;
     let div = document.getElementById('result')
     let p = document.createElement('p')
@@ -52,77 +90,50 @@ function addToSimpleNumberZero(number, length) {
     return str;
 }
 
-function findChanges(arr) {
-    // console.log(arr);
+function findChanges() {
+    let myNodelist = document.querySelectorAll("p");
+    document.getElementById("count").innerHTML = `Number of crocs: ${myNodelist.length - 1}`;
+    for (let i = 0, j = i + 1; i < myNodelist.length; i++) {
+        let el = myNodelist.item(i).innerHTML.split(' ');
+        let two = myNodelist.item(j).innerHTML.split(' ');
 
-
-    // console.log(JSON.stringify(one) === JSON.stringify(two));
-    // let r = document.querySelectorAll('p')
-    // console.log(r.item(3))
-    // const reducer = (one, two) => {
-    //     console.log(one, ":", two);
-    //     if (one === two) console.log("Tada!");
-    //     return two;
-    // };
-
-
-    // one.reduce(reducer);
-    // two.reduce(reducer);
-
-    // let arr = one;
-
-    // let check = arr.every(function(elem) {
-    //     if (elem >= 0) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // });
-
-    // console.log(check);
-    // let three = one.concat(two)
-    // console.log(three);
-    // let arrayOfNumbers = three.map(Number);
-    // console.log(three.map(Number));
-    countArraysOfNumbers();
-
-}
-
-function countArraysOfNumbers() {
-    let ps = document.querySelectorAll('p');
-    // console.log(ps.item(0).innerHTML);
-    // console.log(ps.item(1).innerHTML);
-    let one = ps.item(0).innerHTML.split(' ');
-    let two = ps.item(1).innerHTML.split(',');
-    console.log(one)
-    console.log(two);
-    one.forEach((el1) => two.forEach((el2) => {
-        if (el1 === el2) {
-            console.log(true);
+        const element1 = el.forEach((element1) => {
+            console.log(element1)
+        });
+        const element2 = two.forEach((element2) => {
+            console.log(element2)
+        })
+        if (element1 === element2) {
+            console.log(true)
+        } else {
+            console.log(false)
         }
-        console.log(false);
-
-    }))
+    }
 }
 
 
 
+// const items = ['item1', 'item2', 'item3']
+// const copy = []
+
+// // до
+// for (let i = 0; i < items.length; i++) {
+//   copy.push(items[i])
+// }
+
+// // после
+// items.forEach(function(item){
+//   copy.push(item)
+// })
 
 
 
-// const arr = [0, 7, 2, 6, 5, 9, 6, 9];
-// const reducer = (accumulator, currentValue) => {
-//     console.log(accumulator, ":", currentValue);
-//     if (accumulator > currentValue) console.log("Tada!");
-//     return currentValue;
-// };
+// el.forEach((num1, index) => {
+//     const num2 = two[index];
+//     console.log(num1, num2);
+//     if (num1 === num2) {
+//         console.log(true)
+//     }
+//     console.log(false)
 
-
-// arr.reduce(reducer);
-
-
-
-// var arr1 = [2, 3, 4, 5, 6],
-//     arr2 = [5, 10, 4, 9, 5],
-//     result = arr1.reduce((r, c, i) => (r.sum = r.sum ? r.sum + c * r[i] : c * r[i], r), arr2.slice()).sum;
-// console.log(result);
+// });
