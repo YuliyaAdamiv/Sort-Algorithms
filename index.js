@@ -6,7 +6,8 @@ function generateNumber(length) {
         let readyElementForArray = addToSimpleNumberZero((getRandomNumber(0, 50)), 2);
         result.push(readyElementForArray)
     };
-    let readyElement = result.join(' ');
+    let readyElement = result.join(',');
+    // console.log(readyElement.split(','))
     return readyElement;
 }
 
@@ -65,7 +66,7 @@ function sortElement() {
     let elementArray = document.getElementById('numbers').textContent;
     let array = [];
     array.push(elementArray);
-    let arraySplit = elementArray.split(' ');
+    let arraySplit = elementArray.split(',');
     bubble(arraySplit);
     findChanges();
 }
@@ -93,47 +94,21 @@ function addToSimpleNumberZero(number, length) {
 function findChanges() {
     let myNodelist = document.querySelectorAll("p");
     document.getElementById("count").innerHTML = `Number of crocs: ${myNodelist.length - 1}`;
-    for (let i = 0, j = i + 1; i < myNodelist.length; i++) {
-        let el = myNodelist.item(i).innerHTML.split(' ');
-        let two = myNodelist.item(j).innerHTML.split(' ');
+    for (let i = 0, j = i + 1; i < myNodelist.length - 1; i++, j++) {
+        let el = myNodelist.item(i).innerHTML.split(',');
+        console.log(el)
+        let two = myNodelist.item(j).innerHTML.split(',');
+        console.log(two)
 
-        const element1 = el.forEach((element1) => {
-            console.log(element1)
+        el.forEach((num1, index) => {
+            const num2 = two[index];
+            console.log(num1, num2);
+            if (num1 === num2) {
+                console.log(true)
+            } else {
+                console.log(false)
+                    // num2.style.color = "red"
+            }
         });
-        const element2 = two.forEach((element2) => {
-            console.log(element2)
-        })
-        if (element1 === element2) {
-            console.log(true)
-        } else {
-            console.log(false)
-        }
     }
 }
-
-
-
-// const items = ['item1', 'item2', 'item3']
-// const copy = []
-
-// // до
-// for (let i = 0; i < items.length; i++) {
-//   copy.push(items[i])
-// }
-
-// // после
-// items.forEach(function(item){
-//   copy.push(item)
-// })
-
-
-
-// el.forEach((num1, index) => {
-//     const num2 = two[index];
-//     console.log(num1, num2);
-//     if (num1 === num2) {
-//         console.log(true)
-//     }
-//     console.log(false)
-
-// });
