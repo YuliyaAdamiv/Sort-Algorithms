@@ -77,6 +77,7 @@ function showElement(arr) {
     let element = arr;
     let div = document.getElementById('result');
     let p = document.createElement('p');
+    p.id = 'p'
     p.append(element);
     div.appendChild(p);
     return element;
@@ -96,7 +97,9 @@ function findChanges() {
     document.getElementById("count").innerHTML = `Number of crocs: ${myNodelist.length - 1}`;
     for (let i = 0, j = i + 1; i < myNodelist.length - 1; i++, j++) {
         let el = myNodelist.item(i).innerHTML.split(',');
+        console.log(el)
         let two = myNodelist.item(j).innerHTML.split(',');
+        console.log(two)
 
         el.forEach((num1, index) => {
             const num2 = two[index];
@@ -105,11 +108,11 @@ function findChanges() {
                 // console.log(true)
             } else {
                 // console.log(false)
-                let f = document.createElement("div");
-                f.innerText = num2;
-                let row = myNodelist.item(i).innerHTML
-                console.log(row.replace(row.match(num2), f.style.color = "red"));
-                return row.replace(row.match(num2), f.style.color = "red");
+                let span = document.createElement("span");
+                span.textContent = num2;
+                span.insertAdjacentHTML('beforeend', '!');
+                let res = two.toString().replace(num2, span.innerHTML);
+                showElement(res);
             }
         });
 
