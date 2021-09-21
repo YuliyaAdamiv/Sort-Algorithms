@@ -1,4 +1,9 @@
 //Function Generate Numbers
+let sortSteps = [];
+
+function addStep(step) {
+    sortSteps.push(step);
+}
 
 function generateNumber(length) {
     let result = [];
@@ -7,7 +12,6 @@ function generateNumber(length) {
         result.push(readyElementForArray)
     };
     let readyElement = result.join(',');
-    // console.log(readyElement.split(','))
     return readyElement;
 }
 
@@ -17,22 +21,18 @@ const getRandomNumber = (min, max) => {
 
 let onClick = function() {
     let input = document.getElementById('input').value;
-    let string;
-    if (input === typeof string) {
-        generateNumber(10)
-    }
     document.getElementById('numbers').textContent = generateNumber(input);
 }
 onClick();
 
 //Apply
 function getValueInput() {
-    let input = document.getElementById('input').value;
-    console.log(input);
-    let string;
-    if (input === typeof string) {
-        generateNumber(10)
-    }
+    let min = document.getElementById('min').value;
+    console.log(min);
+    let max = document.getElementById('max').value;
+    console.log(max);
+    let value = max - min;
+    console.log(value);
 }
 
 function validate() {
@@ -77,7 +77,6 @@ function showElement(arr) {
     let element = arr;
     let div = document.getElementById('result');
     let p = document.createElement('p');
-    p.id = 'p'
     p.append(element);
     div.appendChild(p);
     return element;
@@ -93,17 +92,15 @@ function addToSimpleNumberZero(number, length) {
 }
 
 function findChanges() {
-    let myNodelist = document.querySelectorAll("p");
-    document.getElementById("count").innerHTML = `Number of crocs: ${myNodelist.length - 1}`;
-    for (let i = 0, j = i + 1; i < myNodelist.length - 1; i++, j++) {
-        let el = myNodelist.item(i).innerHTML.split(',');
-        console.log(el)
-        let two = myNodelist.item(j).innerHTML.split(',');
-        console.log(two)
+    console.log(sortSteps)
+    document.getElementById("count").innerHTML = `Number of steps: ${sortSteps.length - 1}`;
+    for (let i = 0, j = i + 1; i < sortSteps.length - 1; i++, j++) {
+        let el = sortSteps[i].slice()
+        let two = sortSteps[j].slice()
 
-        el.forEach((num1, index) => {
-            const num2 = two[index];
-            // console.log(num1, num2);
+        two.forEach((num2, index) => {
+            const num1 = el[index];
+            console.log(num1, num2, num1 === num2);
             if (num1 === num2) {
                 // console.log(true)
             } else {
@@ -111,11 +108,59 @@ function findChanges() {
                 let span = document.createElement("span");
                 span.textContent = num2;
                 span.insertAdjacentHTML('beforeend', '!');
-                let res = two.toString().replace(num2, span.innerHTML);
-                showElement(res);
+                two[index] = span.innerHTML;
+
             }
+
         });
+        console.log(j)
+        showElement(two);
 
     }
 
 }
+//  - додати слайдер, на якому можна вибрати мінімальне і максимальне числа. Обмеження від 0 до 1000. Це числа, які генеруються(так як зараз від 0 до 50). Коли нажимаємо кнопку «Apply”, то генеруються числа в вибраному діапазоні
+// - всі ці поля мають бути зліва сторінки(третина). Інші дві третини - це початковий масив і покрокові зміни до сортування(так як зараз знизу виводяться)
+// - коли посортувало, вивести число - скільки всього кроків зайняло сортування
+
+(function() {
+
+    var parent = document.querySelector(".price-slider");
+    if (!parent) return;
+
+    var
+        rangeS = parent.querySelectorAll("input[type=range]"),
+        numberS = parent.querySelectorAll("input[type=number]");
+
+    rangeS.forEach(function(el) {
+        el.oninput = function() {
+            var slide1 = parseFloat(rangeS[0].value),
+                slide2 = parseFloat(rangeS[1].value);
+
+            if (slide1 > slide2) {
+                [slide1, slide2] = [slide2, slide1];
+            }
+
+            numberS[0].value = slide1;
+            numberS[1].value = slide2;
+        }
+    });
+
+    numberS.forEach(function(el) {
+        el.oninput = function() {
+            var number1 = parseFloat(numberS[0].value),
+                number2 = parseFloat(numberS[1].value);
+
+            if (number1 > number2) {
+                var tmp = number1;
+                numberS[0].value = number2;
+                numberS[1].value = tmp;
+            }
+
+            rangeS[0].value = number1;
+            rangeS[1].value = number2;
+
+        }
+    });
+
+})();

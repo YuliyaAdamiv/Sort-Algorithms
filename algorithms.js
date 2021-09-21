@@ -16,7 +16,7 @@ const bubble = (arr) => {
                 console.log();
             }
         }
-        showElement(arr);
+        addStep(arr.slice());
     }
     return arr;
 };
