@@ -22,11 +22,6 @@
     color: red;
 }
 
-.apply {
-    margin-top: 70px;
-    margin-left: 100px;
-}
-
 body {
     display: flex;
     height: 100vh;
@@ -35,10 +30,6 @@ body {
 input {
     box-shadow: 0;
     outline: 0;
-}
-
-#input {
-    width: 100%;
 }
 
 .price-slider {
